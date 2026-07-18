@@ -1,9 +1,28 @@
-﻿/* =========================================================
-   Infant Technology - UI Interaction and Animation Runtime
-   ========================================================= */
+﻿
 
 (() => {
   "use strict";
+
+
+  const GALLERY_PHOTOS = [
+    { src: "assets/gallery/placement.jpeg", category: "placement", alt: "Placement drive", caption: "Placement Drive" },
+    { src: "assets/gallery/mou-1.jpeg", category: "mou", alt: "Institution partnership signing", caption: "Partnership Signing" },
+    { src: "assets/gallery/mou.jpeg", category: "mou", alt: "Memorandum event", caption: "MoU Event" },
+    { src: "assets/gallery/mou-2.jpeg", category: "mou", alt: "Memorandum of understanding signing with DMI Engineering College", caption: "MoU Event" },
+    { src: "assets/gallery/class-2.jpeg", category: "internship", alt: "Internship classroom session", caption: "Internship Classroom" },
+    { src: "assets/gallery/class.jpeg", category: "workshop", alt: "Live class workshop", caption: "Live Class Session" },
+    { src: "assets/gallery/class-1.jpeg", category: "workshop", alt: "Technical workshop", caption: "Workshop Day" }
+  ];
+
+  
+  const GALLERY_VIDEOS = [
+    { src: "assets/videos/campus-1.mp4", poster: "assets/gallery/campus-1-poster.jpg", alt: "MoU signing highlight video" },
+    { src: "assets/videos/campus-2.mp4", poster: "assets/gallery/campus-2-poster.jpg", alt: "Seminar highlight video" },
+    { src: "assets/videos/campus-3.mp4", poster: "assets/gallery/campus-3-poster.jpg", alt: "Internship highlight video" },
+    { src: "assets/videos/campus-4.mp4", poster: "assets/gallery/campus-4-poster.jpg", alt: "Inauguration highlight video" },
+    { src: "assets/videos/video-5.mp4", poster: "assets/gallery/campus-5-poster.jpg", alt: "Event highlight video" },
+    { src: "assets/videos/video-6.mp4", poster: "assets/gallery/campus-6-poster.jpg", alt: "seminar video" }
+  ];
 
   const prefersReducedMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -664,6 +683,71 @@
     window.requestAnimationFrame(animate);
   }
 
+  function renderGallery() {
+    const photoGrid = $("#galleryGrid");
+    const videoGrid = $("#videoGrid");
+
+    if (photoGrid) {
+      const photoMarkup = GALLERY_PHOTOS.map((photo) => {
+        const caption = photo.caption
+          ? `<figcaption>${photo.caption}</figcaption>`
+          : "";
+        return `
+          <figure class="portfolio-item reveal" data-category="${photo.category}">
+            <img src="${photo.src}" alt="${photo.alt || ""}" loading="lazy" decoding="async" />
+            ${caption}
+          </figure>`;
+      }).join("");
+
+      photoGrid.innerHTML = photoMarkup;
+    }
+
+    if (videoGrid) {
+      const videoMarkup = GALLERY_VIDEOS.map((clip) => {
+        const posterAttr = clip.poster ? ` poster="${clip.poster}"` : "";
+        return `
+          <figure class="portfolio-item video-item reveal">
+            <video controls preload="metadata"${posterAttr} aria-label="${clip.alt || ""}">
+              <source src="${clip.src}" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </figure>`;
+      }).join("");
+
+      videoGrid.innerHTML = videoMarkup;
+    }
+  }
+
+  function initGalleryFilter() {
+    const filterButtons = $$(".gallery-filter");
+    if (!filterButtons.length) return;
+
+    const filterableItems = $$("#galleryGrid .portfolio-item[data-category]");
+    if (!filterableItems.length) return;
+
+    function applyFilter(category) {
+      filterableItems.forEach((item) => {
+        const matches = category === "all" || item.dataset.category === category;
+        item.classList.toggle("is-filtered-out", !matches);
+      });
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.classList.contains("is-active")) return;
+
+        filterButtons.forEach((btn) => {
+          btn.classList.remove("is-active");
+          btn.setAttribute("aria-selected", "false");
+        });
+        button.classList.add("is-active");
+        button.setAttribute("aria-selected", "true");
+
+        applyFilter(button.dataset.filter);
+      });
+    });
+  }
+
   function initContactForm() {
     const form = $("#contactForm");
     if (!form) return;
@@ -721,7 +805,7 @@
   function initAnimationFallbackMode() {
     const hasGSAP = Boolean(window.gsap && window.ScrollTrigger);
 
-    // Native animation paths are always enabled, and this class documents fallback state.
+    
     if (!hasGSAP) {
       document.documentElement.classList.add("native-animation-mode");
       return;
@@ -744,9 +828,11 @@
     safeRun("hero-particles", initHeroParticleBackground);
     safeRun("menu", initMobileMenu);
     safeRun("typing", initTyping);
+    safeRun("gallery-render", renderGallery);
     safeRun("reveal", initRevealAnimations);
     safeRun("counters", initCounters);
     safeRun("carousel", initCarousel);
+    safeRun("gallery-filter", initGalleryFilter);
     safeRun("magnetic", initMagneticButtons);
     safeRun("parallax", initOrbParallax);
     safeRun("contact-form", initContactForm);

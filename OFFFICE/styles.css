@@ -1,8 +1,4 @@
-﻿/* =========================================================
-   Infant Technology - Premium Responsive UI System
-   ========================================================= */
-
-:root {
+﻿:root {
   --bg-0: #040b18;
   --bg-1: #081628;
   --bg-2: #0d1f37;
@@ -491,7 +487,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   gap: clamp(1.6rem, 4vw, 2.6rem);
 }
 
@@ -719,6 +715,21 @@ body.menu-open .menu-toggle span:nth-child(3) {
   align-items: start;
 }
 
+.about-intro {
+  display: grid;
+  gap: 1rem;
+  max-width: 46rem;
+}
+
+.about-intro p {
+  color: var(--text-muted);
+}
+
+.about-intro .btn {
+  margin-top: 0.4rem;
+  width: fit-content;
+}
+
 .about-card,
 .carousel-card {
   padding: clamp(1.2rem, 2.4vw, 1.8rem);
@@ -754,6 +765,51 @@ body.menu-open .menu-toggle span:nth-child(3) {
   color: #ffe7c7;
   font-size: 0.84rem;
   font-weight: 700;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2.4vw, 2rem);
+  margin-top: clamp(1.4rem, 2.8vw, 2.2rem);
+}
+
+.pillar-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-1);
+}
+
+.pillar-label::before {
+  content: "";
+  width: 1.6rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent-1));
+}
+
+.about-subheading {
+  margin-top: clamp(2.2rem, 4vw, 3.4rem);
+}
+
+.about-subheading h3 {
+  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+  color: #f4fbff;
+  text-wrap: balance;
+}
+
+.core-values {
+  margin-top: clamp(1.4rem, 2.8vw, 2rem);
+}
+
+.core-values .pillar-label {
+  margin-bottom: 0.9rem;
 }
 
 .carousel-card {
@@ -917,9 +973,50 @@ body.menu-open .menu-toggle span:nth-child(3) {
   font-size: 0.94rem;
 }
 
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.gallery-filter {
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(143, 230, 255, 0.28);
+  border-radius: 999px;
+  padding: 0.5rem 1.05rem;
+  transition: color var(--fast) ease, background var(--fast) ease, border-color var(--fast) ease,
+    transform var(--fast) ease;
+}
+
+.gallery-filter:hover,
+.gallery-filter:focus-visible {
+  color: var(--text);
+  border-color: rgba(45, 231, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.gallery-filter.is-active {
+  color: #032235;
+  background: linear-gradient(120deg, var(--accent-1), #65f9ce);
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(45, 231, 255, 0.3);
+}
+
+.portfolio-item.is-filtered-out {
+  display: none;
+}
+
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   gap: 1rem;
 }
 
@@ -929,15 +1026,19 @@ body.menu-open .menu-toggle span:nth-child(3) {
   border-radius: var(--radius-lg);
   border: 1px solid rgba(193, 236, 255, 0.22);
   background: rgba(5, 14, 24, 0.8);
-  min-height: 15rem;
+  aspect-ratio: 4 / 3;
   position: relative;
   box-shadow: var(--shadow-soft);
 }
 
+.portfolio-item.video-item {
+  aspect-ratio: auto;
+}
+
 .portfolio-item img {
+  display: block;
   width: 100%;
   height: 100%;
-  min-height: 15rem;
   object-fit: cover;
   transition: transform 520ms var(--ease-out), filter 520ms var(--ease-out);
   will-change: transform;
@@ -960,6 +1061,23 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .portfolio-item:focus-within img {
   transform: scale(1.06);
   filter: saturate(1.07);
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.video-item video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
+  min-height: 0;
+  object-fit: cover;
+  background: #000;
 }
 
 .section-contact {
@@ -1478,6 +1596,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
   }
 
   .about-grid,
+  .pillars-grid,
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1488,7 +1607,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
 }
 
 @media (max-width: 760px) {
-  .section {
+  .section:not(.section-hero) {
     padding-block: clamp(4rem, 10vw, 5rem);
   }
 
@@ -1504,8 +1623,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
     grid-template-columns: 1fr;
   }
 
-  .services-grid,
-  .portfolio-grid {
+  .services-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1624,4 +1742,3 @@ body.menu-open .menu-toggle span:nth-child(3) {
     display: none;
   }
 }
-
