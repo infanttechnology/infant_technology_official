@@ -1,5 +1,3 @@
-﻿
-
 (() => {
   "use strict";
 
@@ -708,7 +706,7 @@
         const posterAttr = clip.poster ? ` poster="${clip.poster}"` : "";
         return `
           <figure class="portfolio-item video-item reveal">
-            <video controls preload="metadata"${posterAttr} aria-label="${clip.alt || ""}">
+            <video controls preload="metadata" muted playsinline${posterAttr} aria-label="${clip.alt || ""}">
               <source src="${clip.src}" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -746,6 +744,53 @@
 
         applyFilter(button.dataset.filter);
       });
+    });
+  }
+
+  function initVideoHoverPlay() {
+    const videos = $$("#videoGrid video");
+    if (!videos.length) return;
+
+    const pauseOthers = (current) => {
+      videos.forEach((video) => {
+        if (video !== current && !video.paused) {
+          video.pause();
+        }
+      });
+    };
+
+    videos.forEach((video) => {
+      // Desktop / mouse: play the moment the cursor enters this video,
+      // pause any other video that was already playing.
+      video.addEventListener("mouseenter", () => {
+        pauseOthers(video);
+        video.play().catch(() => {
+          /* Autoplay-with-sound rejections are ignored; video stays paused. */
+        });
+      });
+
+      // Leaving the video pauses it again.
+      video.addEventListener("mouseleave", () => {
+        video.pause();
+      });
+
+      // Touch devices don't have hover — tap toggles play/pause on that video only.
+      video.addEventListener(
+        "touchstart",
+        () => {
+          if (video.paused) {
+            pauseOthers(video);
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        },
+        { passive: true }
+      );
+
+      // Safety net: if a video starts playing through any other path
+      // (e.g. native controls), still enforce "only one plays at a time".
+      video.addEventListener("play", () => pauseOthers(video));
     });
   }
 
@@ -830,6 +875,7 @@
     safeRun("menu", initMobileMenu);
     safeRun("typing", initTyping);
     safeRun("gallery-render", renderGallery);
+    safeRun("video-hover-play", initVideoHoverPlay);
     safeRun("reveal", initRevealAnimations);
     safeRun("counters", initCounters);
     safeRun("carousel", initCarousel);
