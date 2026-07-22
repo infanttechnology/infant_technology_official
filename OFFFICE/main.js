@@ -21,7 +21,7 @@
     { src: "assets/videos/campus-3.mp4", poster: "assets/gallery/campus-3-poster.jpg", alt: "Internship highlight video" },
     { src: "assets/videos/campus-4.mp4", poster: "assets/gallery/campus-4-poster.jpg", alt: "Inauguration highlight video" },
     { src: "assets/videos/video-5.mp4", poster: "assets/gallery/campus-5-poster.jpg", alt: "Event highlight video" },
-    { src: "assets/videos/video-6.mp4", poster: "assets/gallery/campus-6-poster.jpg", alt: "seminar video" }
+    { src: "assets/videos/video-6.mp4", poster: "assets/gallery/campus-6-poster.jpg", alt: "seminar video" },
     { src: "assets/videos/video-7.mp4", poster: "assets/gallery/campus-7-poster.jpg", alt: "seminar video" }
   ];
 
