@@ -4,13 +4,13 @@
 
   const GALLERY_PHOTOS = [
     { src: "assets/gallery/placement.jpeg", category: "placement", alt: "Placement drive", caption: "Placement Drive" },
-    { src: "assets/gallery/mou-1.jpeg", category: "mou", alt: "Institution partnership signing", caption: "Partnership Signing" },
-    { src: "assets/gallery/mou.jpeg", category: "mou", alt: "Memorandum event", caption: "MoU Event" },
-    { src: "assets/gallery/mou-2.jpeg", category: "mou", alt: "Memorandum of understanding signing with DMI Engineering College", caption: "MoU Event" },
+    { src: "assets/gallery/mou-1.jpeg", category: "mou", alt: "Institution partnership signing", caption: "MoU - AASWC" },
+    { src: "assets/gallery/mou.jpeg", category: "mou", alt: "Memorandum event", caption: "MoU - NI" },
+    { src: "assets/gallery/mou-2.jpeg", category: "mou", alt: "Memorandum of understanding signing with DMI Engineering College", caption: "MoU - DMI" },
     { src: "assets/gallery/class-2.jpeg", category: "internship", alt: "Internship classroom session", caption: "Internship Classroom" },
     { src: "assets/gallery/class.jpeg", category: "workshop", alt: "Live class workshop", caption: "Live Class Session" },
     { src: "assets/gallery/class-1.jpeg", category: "workshop", alt: "Technical workshop", caption: "Workshop Day" },
-    { src: "assets/gallery/mou.3.jpeg", category: "mou", alt: "mou - avc", caption: "MoU AVC" }
+    { src: "assets/gallery/mou.3.jpeg", category: "mou", alt: "mou - avc", caption: "MoU - AVC" }
   ];
 
   
