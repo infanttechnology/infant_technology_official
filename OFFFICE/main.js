@@ -25,7 +25,7 @@
     { src: "assets/videos/vid 8.mp4", poster: "assets/gallery/campus.8.jpg", alt: "Event highlight video" },
     { src: "assets/videos/vid 10.mp4", poster: "assets/gallery/campus.10.jpg", alt: "seminar video" },
     { src: "assets/videos/vid 11.mp4", poster: "assets/gallery/campus.11.jpg", alt: "seminar video" },
-    { src: "assets/videos/vid.9.mp4", poster: "assets/gallery/campus.9.jpg", alt: "seminar video" }
+    { src: "assets/videos/vid.9.mp4", poster: "assets/gallery/campus.9.png", alt: "seminar video" }
   ];
 
   const prefersReducedMotion =
