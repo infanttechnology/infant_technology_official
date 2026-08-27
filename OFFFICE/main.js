@@ -10,7 +10,7 @@
     { src: "assets/gallery/class-2.jpeg", category: "internship", alt: "Internship classroom session", caption: "Internship Classroom" },
     { src: "assets/gallery/class.jpeg", category: "workshop", alt: "Live class workshop", caption: "Live Class Session" },
     { src: "assets/gallery/class-1.jpeg", category: "workshop", alt: "Technical workshop", caption: "Workshop Day" },
-    { src: "assets/gallery/mou.3.jpeg", category: "mou", alt: "mou - avc", caption: "mou" }
+    { src: "assets/gallery/mou.3.jpeg", category: "mou", alt: "mou - avc", caption: "MoU AVC" }
   ];
 
   
@@ -22,10 +22,10 @@
     { src: "assets/videos/video-5.mp4", poster: "assets/gallery/campus-5-poster.jpg", alt: "Event highlight video" },
     { src: "assets/videos/video-6.mp4", poster: "assets/gallery/campus-6-poster.jpg", alt: "seminar video" },
     { src: "assets/videos/video-7.mp4", poster: "assets/gallery/campus-7-poster.jpg", alt: "seminar video" },
-    { src: "assets/videos/vid 8.mp4", poster: "assets/gallery/campus.8-poster.jpg", alt: "Event highlight video" },
-    { src: "assets/videos/vid 10.mp4", poster: "assets/gallery/campus.10-poster.jpg", alt: "seminar video" },
-    { src: "assets/videos/vid 11.mp4", poster: "assets/gallery/campus.11-poster.jpg", alt: "seminar video" },
-    { src: "assets/videos/vid.9.mp4", poster: "assets/gallery/campus.9-poster.jpg", alt: "seminar video" }
+    { src: "assets/videos/vid 8.mp4", poster: "assets/gallery/campus.8.jpg", alt: "Event highlight video" },
+    { src: "assets/videos/vid 10.mp4", poster: "assets/gallery/campus.10.jpg", alt: "seminar video" },
+    { src: "assets/videos/vid 11.mp4", poster: "assets/gallery/campus.11.jpg", alt: "seminar video" },
+    { src: "assets/videos/vid.9.mp4", poster: "assets/gallery/campus.9.jpg", alt: "seminar video" }
   ];
 
   const prefersReducedMotion =
